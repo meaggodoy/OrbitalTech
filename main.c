@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include "validacoes.h"
 
 void zerarDados(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s) {
     int i;
@@ -19,16 +21,32 @@ void zerarDados(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c,
 
 void mensagemInicial() {
     printf("====================================================\n");
-    printf("   SISTEMA DE AN√ÅLISE DE MISS√ïES ESPACIAIS\n");
+    printf("   SISTEMA DE AN¡LISE DE MISS’ES ESPACIAIS\n");
     printf("====================================================\n\n");
     
-    printf("Bem-vindo(a) ao Sistema de Gerenciamento e An√°lise\nde Miss√µes Espaciais da ag√™ncia OrbitalTech.\n\n");
-    printf("Este sistema permite registrar, monitorar e analisar\nmiss√µes espaciais, acompanhando informa√ß√µes como\ndestino, local de lan√ßamento, combust√≠vel estimado,\nor√ßamento e status operacional.\n\n");
-    printf("Al√©m do gerenciamento das miss√µes, o sistema gera\nindicadores e relat√≥rios que auxiliam na investiga√ß√£o\ndos fatores que impactam os custos das opera√ß√µes\nespaciais.\n\n");
+    printf("Bem-vindo(a) ao Sistema de Gerenciamento e An·lise\nde Missıes Espaciais da agÍncia OrbitalTech.\n\n");
+    printf("Este sistema permite registrar, monitorar e analisar\nmissıes espaciais, acompanhando informaÁıes como\ndestino, local de lanÁamento, combustÌvel estimado,\norÁamento e status operacional.\n\n");
+    printf("AlÈm do gerenciamento das missıes, o sistema gera\nindicadores e relatÛrios que auxiliam na investigaÁ„o\ndos fatores que impactam os custos das operaÁıes\nespaciais.\n\n");
     printf("====================================================\n");
+    
+    //SÛ para conseguir visualizar a inicializaÁ„o, se for melhor depois muda
+    int comecar;
+    
+    printf("Vamos comecar?\n1 - Sim\n2 - Nao\n");
+    scanf("%d", &comecar);
+    
+    if (comecar == 1) {
+	    #ifdef _WIN32
+	        system("cls");
+	    #else
+	        system("clear");
+	    #endif
+	}
+    
+    
 }
 
-void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, int *k) {
+void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s, int *k) {
     int i, continuarCadastro;
     
     printf("\n=============================================================\n");
@@ -44,9 +62,9 @@ void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, int 
         printf("+----+---------------------------+----------------+\n");
         printf("| 1  | Orbita Terrestre Baixa   | 400            |\n");
         printf("| 2  | ISS                      | 420            |\n");
-        printf("| 3  | Lua                      | 384400         |\n");
-        printf("| 4  | Marte                    | 225000000      |\n");
-        printf("| 5  | Asteroide Proximo        | 50000000       |\n");
+        printf("| 3  | EstaÁ„o Lunar            | 384000         |\n");
+        printf("| 4  | Lua                      | 384400         |\n");
+        printf("| 5  | Marte                    | 225000000      |\n");
         printf("+----+---------------------------+----------------+\n");
         printf("Escolha o destino (1-5): ");
         scanf("%d\n", &dt[i]);
@@ -66,7 +84,7 @@ void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, int 
         printf("Quantidade de astronautas (1 a 8): ");
         scanf("%d\n", &a[i]);
         
-        printf("Previsao de duracao da missao (em dias): ");
+        printf("Previsao de duracao da missao (em dias de 1 a 1000): ");
         scanf("%d\n", &d[i]);
         
         printf("=========================================\n");
@@ -80,6 +98,10 @@ void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, int 
         printf("=========================================\n");
         printf("Escolha a prioridade (1-5): ");
         scanf("%d", &p[i]);
+    
+    	
+        
+        s[i] = 1;
         
         (*k)++;
     }
@@ -95,7 +117,7 @@ int main()
     
     mensagemInicial();
     
-    cadastrarMissao(nomeMissao, destino, localLancamento, astronautas, dias, prioridade, &k);
+    cadastrarMissao(nomeMissao, destino, localLancamento, astronautas, dias, prioridade, combustivel, orcamento, status, &k);
 
     return 0;
 }
