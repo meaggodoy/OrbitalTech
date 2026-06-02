@@ -88,3 +88,14 @@ int validarOperacoesMissao(int m) {
 	
 	return m;
 }
+
+int validarAnalisesRelatorios(int m) {
+	do {
+		if(m < 1 || m > 6) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 6.\n");
+			scanf("%d", &m);
+		}
+	} while (m < 1 || m > 6);
+	
+	return m;
+}

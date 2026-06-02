@@ -9,5 +9,6 @@ int validarPrioridade(int p);
 int validarMenuPrincipal(int m);
 int validarGestaoMissoes(int m);
 int validarOperacoesMissao(int m);
+int validarAnalisesRelatorios(int m);
 
 #endif

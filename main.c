@@ -20,112 +20,6 @@ void zerarDados(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c,
     }
 }
 
-void gestaoMissoes() {
-	int menuGestao;
-	
-	do {
-		printf("\n");
-		printf("====================================================\n");
-		printf("              GESTAO DE MISSOES\n");
-		printf("====================================================\n");
-		printf("1 - Cadastrar Missao\n");
-		printf("2 - Consultar Missao\n");
-		printf("3 - Listar Todas as Missoes\n");
-		printf("4 - Atualizar Dados da Missao\n");
-		printf("5 - Voltar ao Menu Principal\n");
-		printf("====================================================\n");
-		printf("Escolha uma opcao: ");
-		scanf("%d", &menuGestao);
-		menuGestao = validarGestaoMissoes(menuGestao);
-	} while (menuGestao != 5);
-}
-
-void operacoesMissao() {
-	int menuOperacoes;
-	
-	do {
-		printf("\n");
-		printf("====================================================\n");
-		printf("             OPERACOES DA MISSAO\n");
-		printf("====================================================\n");
-		printf("1 - Iniciar Missao\n");
-		printf("2 - Finalizar Missao\n");
-		printf("3 - Cancelar Missao\n");
-		printf("4 - Consultar Status da Missao\n");
-		printf("5 - Voltar ao Menu Principal\n");
-		printf("====================================================\n");
-		printf("Escolha uma opcao: ");
-		scanf("%d", &menuOperacoes);
-		menuOperacoes = validarOperacoesMissao(menuOperacoes);
-	} while (menuOperacoes != 5);
-}
-
-void menuPrincipal() {
-	int menu;
-	
-	do {
-		printf("====================================================\n");
-		printf("      SISTEMA DE MISSOES ESPACIAIS ORBITALTECH\n");
-		printf("====================================================\n");
-		printf("1 - Gestao de Missoes\n");
-		printf("2 - Operacoes da Missao\n");
-		printf("3 - Analises e Relatorios\n");
-		printf("4 - Encerrar Sistema\n");
-		printf("====================================================\n");
-		printf("Escolha uma opcao: ");
-		scanf("%d", &menu);
-		menu = validarMenuPrincipal(menu);
-		
-		switch(menu) {
-			case 1:
-				gestaoMissoes();
-				break;
-			case 2:
-				operacoesMissao();
-				break;
-			case 3: 
-				//analisesRelatorios();
-				printf("Relatorios");
-				break;
-			case 4:
-				printf("\n");
-				printf("====================================================\n");
-				printf("          ENCERRANDO O SISTEMA\n");
-				printf("====================================================\n");
-				printf("Obrigado por utilizar o Sistema OrbitalTech.\n");
-				printf("Todos os dados foram processados com sucesso.\n");
-				printf("Ate a proxima missao.\n");
-				printf("====================================================\n");
-				break;
-		}
-	} while (menu != 4);
-}
-
-void mensagemInicial() {
-    printf("====================================================\n");
-    printf("   SISTEMA DE ANALISE DE MISSOES ESPACIAIS\n");
-    printf("====================================================\n\n");
-    printf("Bem-vindo(a) ao Sistema de Gerenciamento e Analise\nde Missoes Espaciais da agencia OrbitalTech.\n\n");
-    printf("Este sistema permite registrar, monitorar e analisar\nmissoes espaciais, acompanhando informacoes como\ndestino, local de lancamento, combustivel estimado,\norcamento e status operacional.\n\n");
-    printf("Alem do gerenciamento das missoes, o sistema gera\nindicadores e relatorios que auxiliam na investigacao\ndos fatores que impactam os custos das operacoes\nespaciais.\n\n");
-    printf("====================================================\n");
-    
-    //So para conseguir visualizar a inicializacao, se for melhor depois muda
-    int comecar;
-    
-    printf("Acessar menu?\n1 - Sim\n2 - Nao\n");
-    scanf("%d", &comecar);
-    
-    if (comecar == 1) {
-	    #ifdef _WIN32
-	        system("cls");
-	    #else
-	        system("clear");
-	    #endif
-	    menuPrincipal();
-	}  
-}
-
 void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s, int *k) {
     int i, continuarCadastro;
     
@@ -134,7 +28,8 @@ void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
     printf("=============================================================\n\n");
     
     for(i = *k; i < 2; i++) {
-        printf("Nome da Missao: ");
+    	printf("Missao %d", i + 1);
+        printf("\nNome da Missao: ");
         scanf("%s", n[i]);
         
         printf("+----+---------------------------+----------------+\n");
@@ -193,6 +88,159 @@ void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
     }
 }
 
+void listarMissoes(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s) {
+	int i;
+	
+	printf("\n");
+	printf("====================================================================================================\n");
+	printf("| ID | NOME MISSAO     | DESTINO | LOCAL      | AST | DIAS | PRIOR. | STATUS       |\n");
+	printf("====================================================================================================\n");
+	for(i = 0; i < 10; i++) {
+		if(strcmp(n[i], " ") != 0) {
+			printf("| %d | %s     | %d     | %d  |  %d  |  %d  |    %d   | %d    |\n", i + 1);
+		}
+	}
+	printf("====================================================================================================\n");
+}
+
+void gestaoMissoes(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s, int *k) {
+	int menuGestao;
+	
+	do {
+		printf("\n");
+		printf("====================================================\n");
+		printf("              GESTAO DE MISSOES\n");
+		printf("====================================================\n");
+		printf("1 - Cadastrar Missao\n");
+		printf("2 - Consultar Missao\n");
+		printf("3 - Listar Todas as Missoes\n");
+		printf("4 - Atualizar Dados da Missao\n");
+		printf("5 - Voltar ao Menu Principal\n");
+		printf("====================================================\n");
+		printf("Escolha uma opcao: ");
+		scanf("%d", &menuGestao);
+		menuGestao = validarGestaoMissoes(menuGestao);
+		
+		switch (menuGestao) {
+			case 1:
+				cadastrarMissao(n, dt, l, a, d, p, c, o, s, k);
+				break;
+			case 2:
+				//consultarMissao();
+				break;
+			case 3:
+				listarMissoes(n, dt, l, a, d, p, c, o, s);
+				break;
+		}
+	} while (menuGestao != 5);
+}
+
+void operacoesMissao() {
+	int menuOperacoes;
+	
+	do {
+		printf("\n");
+		printf("====================================================\n");
+		printf("             OPERACOES DA MISSAO\n");
+		printf("====================================================\n");
+		printf("1 - Iniciar Missao\n");
+		printf("2 - Finalizar Missao\n");
+		printf("3 - Cancelar Missao\n");
+		printf("4 - Consultar Status da Missao\n");
+		printf("5 - Voltar ao Menu Principal\n");
+		printf("====================================================\n");
+		printf("Escolha uma opcao: ");
+		scanf("%d", &menuOperacoes);
+		menuOperacoes = validarOperacoesMissao(menuOperacoes);
+	} while (menuOperacoes != 5);
+}
+
+void analisesRelatorios() {
+	int menuRelatorios;
+	
+	do {
+		printf("\n");
+		printf("====================================================\n");
+		printf("          ANALISES E RELATORIOS\n");
+		printf("====================================================\n");
+		printf("1 - Indicadores Financeiros\n");
+		printf("2 - Indicadores Operacionais\n");
+		printf("3 - Indicadores de Recursos\n");
+		printf("4 - Relatorios\n");
+		printf("5 - Central de Pesquisa\n");
+		printf("6 - Voltar ao Menu Principal\n");
+		printf("====================================================\n");
+		printf("Escolha uma opcao: ");
+		scanf("%d", &menuRelatorios);
+		menuRelatorios = validarAnalisesRelatorios(menuRelatorios);
+	} while (menuRelatorios != 6);
+}
+
+void menuPrincipal(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s, int *k) {
+	int menu;
+	
+	do {
+		printf("====================================================\n");
+		printf("      SISTEMA DE MISSOES ESPACIAIS ORBITALTECH\n");
+		printf("====================================================\n");
+		printf("1 - Gestao de Missoes\n");
+		printf("2 - Operacoes da Missao\n");
+		printf("3 - Analises e Relatorios\n");
+		printf("4 - Encerrar Sistema\n");
+		printf("====================================================\n");
+		printf("Escolha uma opcao: ");
+		scanf("%d", &menu);
+		menu = validarMenuPrincipal(menu);
+		
+		switch(menu) {
+			case 1:
+				gestaoMissoes(n, dt, l, a, d, p, c, o, s, k);
+				break;
+			case 2:
+				operacoesMissao();
+				break;
+			case 3: 
+				analisesRelatorios();
+				break;
+			case 4:
+				printf("\n");
+				printf("====================================================\n");
+				printf("          ENCERRANDO O SISTEMA\n");
+				printf("====================================================\n");
+				printf("Obrigado por utilizar o Sistema OrbitalTech.\n");
+				printf("Todos os dados foram processados com sucesso.\n");
+				printf("Ate a proxima missao.\n");
+				printf("====================================================\n");
+				break;
+		}
+	} while (menu != 4);
+}
+
+void mensagemInicial(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s, int *k) {
+    printf("====================================================\n");
+    printf("   SISTEMA DE ANALISE DE MISSOES ESPACIAIS\n");
+    printf("====================================================\n\n");
+    printf("Bem-vindo(a) ao Sistema de Gerenciamento e Analise\nde Missoes Espaciais da agencia OrbitalTech.\n\n");
+    printf("Este sistema permite registrar, monitorar e analisar\nmissoes espaciais, acompanhando informacoes como\ndestino, local de lancamento, combustivel estimado,\norcamento e status operacional.\n\n");
+    printf("Alem do gerenciamento das missoes, o sistema gera\nindicadores e relatorios que auxiliam na investigacao\ndos fatores que impactam os custos das operacoes\nespaciais.\n\n");
+    printf("====================================================\n");
+    
+    //So para conseguir visualizar a inicializacao, se for melhor depois muda
+    int comecar;
+    
+    printf("Acessar menu?\n1 - Sim\n2 - Nao\n");
+    scanf("%d", &comecar);
+    
+    if (comecar == 1) {
+	    #ifdef _WIN32
+	        system("cls");
+	    #else
+	        system("clear");
+	    #endif
+	    menuPrincipal(n, dt, l, a, d, p, c, o, s, k);
+	}  
+}
+
 int main()
 {
     char nomeMissao[10][50];
@@ -200,10 +248,7 @@ int main()
     float combustivel[10], orcamento[10];
     
     zerarDados(nomeMissao, destino, localLancamento, astronautas, dias, prioridade, combustivel, orcamento, status);
+    mensagemInicial(nomeMissao, destino, localLancamento, astronautas, dias, prioridade, combustivel, orcamento, status, &k);
     
-    mensagemInicial();
-    
-    //cadastrarMissao(nomeMissao, destino, localLancamento, astronautas, dias, prioridade, combustivel, orcamento, status, &k);
-
     return 0;
 }
