@@ -338,7 +338,7 @@ void listarMissoes(char n[][50], int *dt, int *l, int *a, int *d, int *p, float 
 	printf("                                         MISSOES CADASTRADAS\n");
 	printf("==================================================================================================================================================================\n");
 	printf("| ID | NOME                     | DESTINO                  | LOCAL                     | AST | DIAS | PRI         | STATUS        | COMB.(t) | ORCAMENTO (M US$) |");
-	printf("==================================================================================================================================================================\n");
+	printf("\n==================================================================================================================================================================\n");
 	for(i = 0; i < 10; i++) {
 		if(strcmp(n[i], " ") != 0) {
 			printf("| %-2d | %-24s | %-24s | %-25s | %-3d | %-4d | %-11s | %-13s | %8.2f | %17.2f |", i + 1, n[i], transcricaoDestino(dt[i]), transcricaoLocal(l[i]), a[i], d[i], transcricaoPrioridade(p[i]), transcricaoStatus(s[i]), c[i], o[i]);
@@ -689,7 +689,7 @@ void indicadorOperacional(char n[][50], int *s) {
 	limparSistema();
 	
 	int i, totalMissoes = 0, qtdPlanejadas = 0, qtdAndamento = 0, qtdConcluidas = 0, qtdCanceladas = 0;
-	float taxaSucesso = 0;
+	float taxaSucesso;
 	
 	for (i = 0; i < 10; i++) {
 		if(strcmp(n[i], " ") != 0) {
@@ -707,7 +707,7 @@ void indicadorOperacional(char n[][50], int *s) {
 		}
 	}
 	
-	taxaSucesso = qtdConcluidas / totalMissoes;
+	taxaSucesso = (float)qtdConcluidas / totalMissoes * 100;
 	
 	printf("\n");
 	printf("====================================================\n");
@@ -718,7 +718,7 @@ void indicadorOperacional(char n[][50], int *s) {
 	printf("Missoes em andamento         : %d\n", qtdAndamento);
 	printf("Missoes concluidas           : %d\n", qtdConcluidas);
 	printf("Missoes canceladas           : %d\n", qtdCanceladas);
-	printf("Taxa de sucesso              : %.2f %\n", taxaSucesso);
+	printf("Taxa de sucesso              : %.2f %%\n", taxaSucesso);
 	printf("====================================================\n");
 }
 
@@ -737,6 +737,8 @@ void indicadorRecurso(char n[][50], float *c) {
 			if (i == 0) {
 				maiorCombustivel = c[i];
 				menorCombustivel = c[i];
+				strcpy(nomeMaior, n[i]);
+				strcpy(nomeMenor, n[i]);
 			}
 			
 			if (c[i] > maiorCombustivel) {
@@ -778,8 +780,7 @@ void analisesRelatorios(char n[][50], int *dt, int *l, int *a, int *d, int *p, f
 		printf("1 - Indicadores Financeiros\n");
 		printf("2 - Indicadores Operacionais\n");
 		printf("3 - Indicadores de Recursos\n");
-		printf("4 - Relatorios\n");
-		printf("5 - Voltar ao Menu Principal\n");
+		printf("4 - Voltar ao Menu Principal\n");
 		printf("====================================================\n");
 		printf("Escolha uma opcao: ");
 		scanf("%d", &menuRelatorios);
@@ -795,11 +796,8 @@ void analisesRelatorios(char n[][50], int *dt, int *l, int *a, int *d, int *p, f
 			case 3:
 				indicadorRecurso(n, c);
 				break;
-			case 4:
-				//relatorios();
-				break;
 		}
-	} while (menuRelatorios != 5);
+	} while (menuRelatorios != 4);
 	limparSistema();
 }
 
@@ -864,8 +862,7 @@ void mensagemInicial(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
 	}  
 }
 
-int main()
-{
+int main() {
     char nomeMissao[10][50];
     int destino[10], localLancamento[10], astronautas[10], dias[10], prioridade[10], status[10], k = 0;
     float combustivel[10], orcamento[10];

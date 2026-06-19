@@ -91,11 +91,11 @@ int validarOperacoesMissao(int m) {
 
 int validarAnalisesRelatorios(int m) {
 	do {
-		if(m < 1 || m > 5) {
-			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 5.\n");
+		if(m < 1 || m > 4) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 4.\n");
 			scanf("%d", &m);
 		}
-	} while (m < 1 || m > 5);
+	} while (m < 1 || m > 4);
 	
 	return m;
 }
