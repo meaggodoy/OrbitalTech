@@ -10,5 +10,8 @@ int validarMenuPrincipal(int m);
 int validarGestaoMissoes(int m);
 int validarOperacoesMissao(int m);
 int validarAnalisesRelatorios(int m);
+int validarIndice(int id, int j);
+int validarAtualizar(int m);
+int validarConsulta(int m);
 
 #endif

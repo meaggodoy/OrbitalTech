@@ -80,6 +80,17 @@ int validarGestaoMissoes(int m) {
 
 int validarOperacoesMissao(int m) {
 	do {
+		if(m < 1 || m > 4) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 4.\n");
+			scanf("%d", &m);
+		}
+	} while (m < 1 || m > 4);
+	
+	return m;
+}
+
+int validarAnalisesRelatorios(int m) {
+	do {
 		if(m < 1 || m > 5) {
 			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 5.\n");
 			scanf("%d", &m);
@@ -89,13 +100,35 @@ int validarOperacoesMissao(int m) {
 	return m;
 }
 
-int validarAnalisesRelatorios(int m) {
+int validarIndice(int id, int j) {
 	do {
-		if(m < 1 || m > 6) {
-			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 6.\n");
+		if(id < 1 || id > j) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e %d.\n", j);
+			scanf("%d", &id);
+		}
+	} while (id < 1 || id > j);
+	
+	return id;
+}
+
+int validarAtualizar(int m) {
+	do {
+		if(m < 1 || m > 5) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 5.\n");
 			scanf("%d", &m);
 		}
-	} while (m < 1 || m > 6);
+	} while (m < 1 || m > 5);
+	
+	return m;
+}
+
+int validarConsulta(int m) {
+	do {
+		if(m < 1 || m > 7) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 7.\n");
+			scanf("%d", &m);
+		}
+	} while (m < 1 || m > 7);
 	
 	return m;
 }
