@@ -132,3 +132,14 @@ int validarConsulta(int m) {
 	
 	return m;
 }
+
+int validarRelatorio(int r) {
+	do {
+		if(r < 1 || r > 2) {
+			printf("\n[ERRO] Valor invalido. Informe um numero entre 1 e 2.\n");
+			scanf("%d", &r);
+		}
+	} while (r < 1 || r > 2);
+	
+	return r;
+}

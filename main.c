@@ -642,7 +642,7 @@ void operacoesMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
 void indicadorFinanceiro(char n[][50], float *o) {
 	limparSistema();
 	
-	int i, t = 0;
+	int i, t = 0, relatorio;
 	float mediaOrcamento = 0, totalOrcamento = 0, maiorOrcamento = 0, menorOrcamento = 0;
 	char nomeMaior[50], nomeMenor[50];
 	
@@ -683,12 +683,40 @@ void indicadorFinanceiro(char n[][50], float *o) {
 	printf("Missao mais economica       : %s\n", nomeMenor);
 	printf("Menor orcamento             : US$ %.2f milhoes\n", menorOrcamento);
 	printf("====================================================\n");
+	
+	printf("\n");
+	printf("Deseja emitir o relatorio?\n");
+	printf("1 - Sim\n2 - Nao\n");
+	printf("====================================================\n");
+	printf("Escolha uma opcao: ");
+	scanf("%d", &relatorio);
+	relatorio = validarRelatorio(relatorio);
+	
+	if (relatorio == 1) {
+		FILE *relatorio;
+		relatorio = fopen("IndicadorFinanceiro.txt", "a");
+		
+		fprintf(relatorio, "====================================================\n");
+		fprintf(relatorio, "            INDICADORES FINANCEIROS\n");
+		fprintf(relatorio, "====================================================\n");
+		fprintf(relatorio, "Orcamento medio das missoes : US$ %.2f milhoes\n", mediaOrcamento);
+		fprintf(relatorio, "Orcamento total investido   : US$ %.2f milhoes\n", totalOrcamento);
+		fprintf(relatorio, "Missao mais cara            : %s\n", nomeMaior);
+		fprintf(relatorio, "Maior orcamento             : US$ %.2f milhoes\n", maiorOrcamento);
+		fprintf(relatorio, "Missao mais economica       : %s\n", nomeMenor);
+		fprintf(relatorio, "Menor orcamento             : US$ %.2f milhoes\n", menorOrcamento);
+		fprintf(relatorio, "====================================================\n");
+		
+		fclose(relatorio);
+		
+		printf("Relatorio emitido com sucesso!");
+	}
 }
 
 void indicadorOperacional(char n[][50], int *s) {
 	limparSistema();
 	
-	int i, totalMissoes = 0, qtdPlanejadas = 0, qtdAndamento = 0, qtdConcluidas = 0, qtdCanceladas = 0;
+	int i, totalMissoes = 0, qtdPlanejadas = 0, qtdAndamento = 0, qtdConcluidas = 0, qtdCanceladas = 0, relatorio;
 	float taxaSucesso;
 	
 	for (i = 0; i < 10; i++) {
@@ -720,12 +748,40 @@ void indicadorOperacional(char n[][50], int *s) {
 	printf("Missoes canceladas           : %d\n", qtdCanceladas);
 	printf("Taxa de sucesso              : %.2f %%\n", taxaSucesso);
 	printf("====================================================\n");
+	
+	printf("\n");
+	printf("Deseja emitir o relatorio?\n");
+	printf("1 - Sim\n2 - Nao\n");
+	printf("====================================================\n");
+	printf("Escolha uma opcao: ");
+	scanf("%d", &relatorio);
+	relatorio = validarRelatorio(relatorio);
+	
+	if (relatorio == 1) {
+		FILE *relatorio;
+		relatorio = fopen("IndicadorOperacional.txt", "a");
+		
+		fprintf(relatorio, "====================================================\n");
+		fprintf(relatorio, "           INDICADORES OPERACIONAIS\n");
+		fprintf(relatorio, "====================================================\n");
+		fprintf(relatorio, "Total de missoes cadastradas : %d\n", totalMissoes);
+		fprintf(relatorio, "Missoes planejadas           : %d\n", qtdPlanejadas);
+		fprintf(relatorio, "Missoes em andamento         : %d\n", qtdAndamento);
+		fprintf(relatorio, "Missoes concluidas           : %d\n", qtdConcluidas);
+		fprintf(relatorio, "Missoes canceladas           : %d\n", qtdCanceladas);
+		fprintf(relatorio, "Taxa de sucesso              : %.2f %%\n", taxaSucesso);
+		fprintf(relatorio, "====================================================\n");
+		
+		fclose(relatorio);
+		
+		printf("Relatorio emitido com sucesso!");
+	}
 }
 
 void indicadorRecurso(char n[][50], float *c) {
 	limparSistema();
 	
-	int i, t = 0;
+	int i, t = 0, relatorio;
 	float mediaCombustivel = 0, totalCombustivel = 0, maiorCombustivel = 0, menorCombustivel = 0;
 	char nomeMaior[50], nomeMenor[50];
 	
@@ -766,6 +822,34 @@ void indicadorRecurso(char n[][50], float *c) {
 	printf("Menor consumo registrado      : %.2f toneladas\n", menorCombustivel);
 	printf("Missao correspondente         : %s\n", nomeMenor);
 	printf("====================================================\n");
+	
+	printf("\n");
+	printf("Deseja emitir o relatorio?\n");
+	printf("1 - Sim\n2 - Nao\n");
+	printf("====================================================\n");
+	printf("Escolha uma opcao: ");
+	scanf("%d", &relatorio);
+	relatorio = validarRelatorio(relatorio);
+	
+	if (relatorio == 1) {
+		FILE *relatorio;
+		relatorio = fopen("IndicadorRecurso.txt", "a");
+		
+		fprintf(relatorio, "====================================================\n");
+		fprintf(relatorio, "            INDICADORES DE RECURSOS\n");
+		fprintf(relatorio, "====================================================\n");
+		fprintf(relatorio, "Combustivel medio             : %.2f toneladas\n", mediaCombustivel);
+		fprintf(relatorio, "Combustivel total utilizado   : %.2f toneladas\n", totalCombustivel);
+		fprintf(relatorio, "Maior consumo registrado      : %.2f toneladas\n", maiorCombustivel);
+		fprintf(relatorio, "Missao correspondente         : %s\n", nomeMaior);
+		fprintf(relatorio, "Menor consumo registrado      : %.2f toneladas\n", menorCombustivel);
+		fprintf(relatorio, "Missao correspondente         : %s\n", nomeMenor);
+		fprintf(relatorio, "====================================================\n");
+		
+		fclose(relatorio);
+		
+		printf("Relatorio emitido com sucesso!");
+	}
 }
 
 void analisesRelatorios(char n[][50], int *dt, int *l, int *a, int *d, int *p, float *c, float *o, int *s) {
@@ -850,7 +934,6 @@ void mensagemInicial(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
     printf("Alem do gerenciamento das missoes, o sistema gera\nindicadores e relatorios que auxiliam na investigacao\ndos fatores que impactam os custos das operacoes\nespaciais.\n\n");
     printf("====================================================\n");
     
-    //So para conseguir visualizar a inicializacao, se for melhor depois muda
     int comecar;
     
     printf("Acessar menu?\n1 - Sim\n2 - Nao\n");
@@ -859,7 +942,11 @@ void mensagemInicial(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
     if (comecar == 1) {
 	    limparSistema();
 	    menuPrincipal(n, dt, l, a, d, p, c, o, s, k);
-	}  
+	} else {
+		printf("====================================================\n");
+		printf("          ENCERRANDO O SISTEMA\n");
+		printf("====================================================\n");
+	}
 }
 
 int main() {
