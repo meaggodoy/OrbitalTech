@@ -1,47 +1,174 @@
-# OrbitalTech: Sistema de Gestão e Análise de Missões Espaciais
-Trabalho final da disciplina de Linguagem de Programação 01
+# 🚀 OrbitalTech: Sistema de Gestão e Análise de Missões Espaciais
+
+Trabalho final da disciplina de Linguagem de Programação I - Instituto Federal de São Paulo (IFSP)
+
+## 📖 Sobre o Projeto
+
+A **OrbitalTech** é uma empresa fictícia do setor aeroespacial responsável pelo planejamento e gerenciamento de missões espaciais.
+
+O projeto foi desenvolvido em linguagem C com o objetivo de simular a gestão operacional, financeira e logística de missões espaciais, permitindo o cadastro, monitoramento e análise dos recursos envolvidos em cada operação.
 
 ---
-## Do projeto
-Projeto desenvolvido com o objetivo de simular a gestão operacional, financeira e logística de missões espaciais, permitindo o cadastro, monitoramento e análise dos recursos envolvidos em cada operação.
-Em um primeiro momento, desenvolvido em linguagem C com funcionalidades simples.
-### 1. Gestão de Missões: 
-Módulo para cadastrar, atualizar e consultar as missões cadastradas.
+
+## 📦 Estrutura do Sistema
+
+```text
+Sistema OrbitalTech
+
+├── Gestão de Missões
+├── Operações da Missão
+├── Análises e Indicadores
+└── Relatórios
+```
+
+---
+
+# 📋 Gestão de Missões
+
+Módulo responsável pelo gerenciamento das missões cadastradas.
+
+```text
 ├── Gestão de Missões
 │ ├── Cadastrar
 │ ├── Consultar
 │ ├── Listar
 │ └── Atualizar
-### 2. Operações de Missões: 
-Módulo para alterar o status das missões cadastradas conforme a regra de negócio.
-├── Operacoes da Missao
+```
+
+### Funcionalidades
+
+* Cadastro de missões;
+* Consulta por diferentes filtros;
+* Listagem das missões cadastradas;
+* Atualização de dados;
+* Validação das entradas do usuário.
+
+---
+
+# 🚀 Operações da Missão
+
+Módulo responsável pelo controle do ciclo de vida das missões.
+
+```text
+├── Operações da Missão
 │ ├── Iniciar
 │ ├── Finalizar
 │ └── Cancelar
-### 3. Análises e Indicadores: 
-Módulo responsável para apresentar valores e medidas com base nas atividades dos outros módulos.
-├── Analises e Relatorios
+```
+
+### Regras de negócio
+
+As missões podem assumir os seguintes estados:
+
+```text
+Planejada
+    ↓
+Em andamento
+    ↓
+Concluída
+
+ou
+
+Planejada
+    ↓
+Cancelada
+```
+
+---
+
+# 📊 Análises e Indicadores
+
+Módulo responsável pela geração de indicadores e métricas.
+
+```text
+├── Análises e Indicadores
 │ ├── Financeiros
 │ ├── Operacionais
 │ └── Recursos
+```
+
+### Indicadores financeiros
+
+* Orçamento médio;
+* Orçamento total;
+* Maior orçamento;
+* Menor orçamento.
+
+### Indicadores operacionais
+
+* Total de missões;
+* Missões concluídas;
+* Missões canceladas;
+* Taxa de sucesso.
+
+### Indicadores de recursos
+
+* Consumo médio de combustível;
+* Maior consumo;
+* Menor consumo.
 
 ---
-## No código
-O projeto foi desenvolvido em linguagem C usando vetores, funções, módulos, loops, bibliotecas e condicionais.
-<img width="1121" height="202" alt="image" src="https://github.com/user-attachments/assets/2dc64af8-b1fe-49ee-8be5-28c497ae6442" />
-A função main foi usada apenas para iniciar as interações do código e para a criação das variáveis.
-- *Por motivos de segurança e cuidado com o uso indevido, foram usadas apenas variáveis locais. E para garantir que fossem constantes, elas foram maniuladas como ponteiros.*
-- *A função de zerarDados(), foi usada para evitar que os vetores não fossem corretamente preenchidos, permitindo que eu pudesse manejar conforme os módulos.*
-<img width="1124" height="288" alt="image" src="https://github.com/user-attachments/assets/a4e8bf93-987a-4a97-aaf6-7741b0ffe4bb" />
-Esse mesmo tipo de manipulação com strings foi usado para a comparação dos cadastros nos indicadores e relatórios.
 
+# 📄 Relatórios
 
-As funções escritas na main foram todas usadas como *void*, enquanto as funções dos módulos externos, retornavam valores.
-Para manter a saída do código limpa e legível, foi usada a função limparSistema(), que com um caminho de comandos, limpa a saída painel.
+Módulo responsável pela geração automática de relatórios em arquivos `.txt`.
 
-### Gestão de Missões
-<img width="1128" height="614" alt="image" src="https://github.com/user-attachments/assets/a50fef3c-47c1-4d1a-abab-a19d1d38a6d8" />
-- A função para o cadastro das missões foi organizada para que fosse possível o usuário adicionar quantas missões quisesse => k como variável memória.
-- Todas as saídas de menus e com limites, são verificadas no módulo externo *validacoes.c e .h*.
+Os relatórios apresentam:
 
+* Indicadores financeiros;
+* Indicadores operacionais;
+* Indicadores de recursos;
+* Lista das missões cadastradas;
+* Informações consolidadas do sistema.
 
+---
+
+# 🛠️ Conceitos Utilizados
+
+Durante o desenvolvimento do projeto foram utilizados:
+
+* Vetores;
+* Ponteiros;
+* Funções;
+* Modularização;
+* Laços de repetição;
+* Estruturas condicionais;
+* Manipulação de strings (`string.h`);
+* Manipulação de arquivos;
+* Validação de dados;
+* Cálculos e indicadores.
+
+---
+
+# 📂 Organização do Código
+
+A função `main()` é utilizada apenas para inicialização do sistema e criação das variáveis principais.
+
+As funcionalidades foram separadas em módulos responsáveis por:
+
+* Validações;
+* Cálculos;
+* Transcrições para arquivos;
+* Operações das missões;
+* Indicadores;
+* Relatórios.
+
+Também foi implementada a função `zerarDados()`, utilizada para inicializar corretamente os vetores e evitar inconsistências durante o preenchimento das estruturas.
+
+Além disso, a função `limparSistema()` foi criada para manter a saída do terminal mais organizada e legível.
+
+---
+
+# 💡 Objetivo do Projeto
+
+Além de aplicar conceitos fundamentais da linguagem C, este projeto foi desenvolvido com o objetivo de simular um sistema real de gestão de missões espaciais e servir como base para futuros projetos voltados para análise de dados.
+
+---
+
+## 👩‍💻 Autora
+
+**Maria Eduarda Antunes Godoy**
+
+Instituto Federal de São Paulo - IFSP
+
+Junho/2026
