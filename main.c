@@ -114,11 +114,11 @@ void cadastrarMissao(char n[][50], int *dt, int *l, int *a, int *d, int *p, floa
 					break;
 				}
 			} else {
-				printf("Limite para cadastro de missões atingido\n");
+				printf("Limite para cadastro de missoes atingido\n");
 			}
 	    }
 	} else {
-		printf("Limite para cadastro de missões atingido\n");
+		printf("Limite para cadastro de missoes atingido\n");
 	}
     limparSistema();
 }
